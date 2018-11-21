@@ -40,7 +40,7 @@
 : 2,  swap , , ;
 : 3,  rot , swap , , ;
 : 4,  2swap swap , , swap , , ;
-: :is  :noname  postpone [  [compile] is  ] ;
+[undefined] :is [if] : :is  :noname  postpone [  [compile] is  ] ; [then]
 : reverse   ( ... count -- ... ) 1+ 1 max 1 ?do i 1- roll loop ;
 : cfill  fill ;
 

@@ -9,7 +9,7 @@
 [undefined] EXTERNALS_LOADED [if]  \ ensure that external libs are only ever loaded once.
     [defined] gforth [if]
         : kitconfig.f  s" ../kitconfig.f" ;
-        : file-exists  r/o open-file dup if swap close-file drop then ;
+	: file-exists  r/o open-file 0= tuck if close-file then drop ;
     [else]
         : kitconfig.f  s" kitconfig.f" ;
     [then]

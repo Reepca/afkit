@@ -51,8 +51,8 @@ variable sf
 variable df
 : 1df  df f! df 2@ ;
 
-: 0e  ( - f: n )  STATE @ IF POSTPONE #0.0e ELSE #0.0e THEN ; immediate
-: 1e  ( - f: n )  STATE @ IF POSTPONE #1.0e ELSE #1.0e THEN ; immediate
+: 0e  ( - f: n )  STATE @ IF POSTPONE 0.0e ELSE 0.0e THEN ; immediate
+: 1e  ( - f: n )  STATE @ IF POSTPONE 1.0e ELSE 1.0e THEN ; immediate
 
 : 2s>f  swap s>f s>f ;  ( x y - f: x y )
 : 3s>f  rot s>f swap s>f s>f ;  ( x y z - f: x y z )

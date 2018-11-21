@@ -12,5 +12,6 @@ $5020300 constant ALLEGRO_VERSION_INT
 
 \ Platform:
 
-include afkit/plat/sfwin32.f
+\ include afkit/plat/sfwin32.f
 \ include afkit/plat/sflinux.f
+include afkit/plat/gflinux.f
