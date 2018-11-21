@@ -5,6 +5,7 @@
     ALLEGRO_WINDOWED
     ALLEGRO_RESIZABLE or
     \ ALLEGRO_PROGRAMMABLE_PIPELINE or
+    [defined] opengl [if] ALLEGRO_OPENGL or [then]
 [then]
       value allegro-display-flags
 
