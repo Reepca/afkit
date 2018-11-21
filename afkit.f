@@ -14,7 +14,7 @@
         : kitconfig.f  s" kitconfig.f" ;
     [then]
 
-    kitconfig.f file-exists [if]
+    s" kitconfig.f" file-exists [if]
         kitconfig.f included
     [else]
         s" Missing kitconfig.f!!! " type QUIT
