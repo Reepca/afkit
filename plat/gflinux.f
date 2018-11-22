@@ -44,5 +44,16 @@ immediate
 include afkit/ans/ffl/gflinux/ffl.f   \ FFL: DOM; FFL loads FPMATH
 include afkit/dep/allegro5/allegrolib.fs
 include afkit/dep/X11/xlib-gforth.f
+\ Some functions are assumed to behave differently than you'd expect given their
+\ C definition. For example, XRaiseWindow is expected to leave nothing on the
+\ stack, even though it returns an int. We rectify this here.
+: autodrop
+    parse-name 2dup find-name name>int -rot nextname
+    create , does> perform drop ;
+autodrop XMapWindow
+autodrop XRaiseWindow
+autodrop XSync
+autodrop XSetInputFocus
+autodrop XGetInputFocus
 
-\ include afkit/plat/sf.f
+

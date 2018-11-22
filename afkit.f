@@ -154,14 +154,14 @@ al_get_num_display_modes 1 -  native  al_get_display_mode
         _disp @ swap XRaiseWindow
         _disp @ 0 XSync ;
 
-    : >display  display al_get_x_window_id focus ;
+    : >display  display al_get_x_window_id btf ;
 [else]
     : btf  ( winapi-window - )
       dup 1 ShowWindow drop  dup BringWindowToTop drop  SetForegroundWindow drop ;
     : >display  ( - )  display al_get_win_window_handle btf ;
 [then]
 
-:noname [ is >ide ]  ( - )  HWND btf ;
+:is >ide ( - ) HWND btf ;
 >ide
 
 \ ----------------------------------------------- keyboard -----------------------------------------
