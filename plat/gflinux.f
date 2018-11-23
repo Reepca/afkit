@@ -40,9 +40,21 @@ create cmd 256 allot
 immediate
 ' 0= alias not
 : :is   noname : latestxt <is> ;
+\ interpretation implemented only
+: z"   here [char] " parse here swap dup allot move 0 c, ;
+' >body alias >code
+' body> alias code>
 
 include afkit/ans/ffl/gflinux/ffl.f   \ FFL: DOM; FFL loads FPMATH
 include afkit/dep/allegro5/allegrolib.fs
+create tmp-color ALLEGRO_COLOR allot
+: >tmp-color tmp-color
+    dup ALLEGRO_COLOR.a sf!
+    dup ALLEGRO_COLOR.b sf!
+    dup ALLEGRO_COLOR.g sf!
+        ALLEGRO_COLOR.r sf! ;
+: al_clear_to_color   >tmp-color tmp-color al_clear_to_color ;
+: al_draw_filled_rectangle >tmp-color tmp-color al_draw_filled_rectangle ;
 include afkit/dep/X11/xlib-gforth.f
 \ Some functions are assumed to behave differently than you'd expect given their
 \ C definition. For example, XRaiseWindow is expected to leave nothing on the
@@ -55,5 +67,6 @@ autodrop XRaiseWindow
 autodrop XSync
 autodrop XSetInputFocus
 autodrop XGetInputFocus
-
-
+autodrop al_get_display_mode
+autodrop al_show_mouse_cursor
+autodrop al_hide_mouse_cursor

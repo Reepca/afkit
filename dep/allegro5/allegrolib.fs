@@ -7,6 +7,8 @@ c-library allegro
     \c #include <allegro5/allegro_image.h>
     \c #include <allegro5/allegro_primitives.h>
     \c bool gforth_al_init(){ return al_init();}
+    \c bool gforth_al_toggle_display_flag(ALLEGRO_DISPLAY* display, int flag, bool onoff)
+    \c { al_toggle_display_flag(display, flag, onoff); }
     
     s" allegro"            add-lib
     s" allegro_audio"      add-lib
@@ -15,7 +17,10 @@ c-library allegro
     s" allegro_primitives" add-lib
     s" allegro_font"       add-lib
     s" allegro_ttf"        add-lib
+    \ The automatic function wrapping doesn't get these because they're actually
+    \ macros.
     c-function al_init gforth_al_init -- n
+    c-function al_toggle_display_flag gforth_al_toggle_display_flag a n n -- n
     include afkit/dep/allegro5/allegro-gforth.f
 end-c-library
 
@@ -224,3 +229,145 @@ end-c-library
 \ Misc naming variations
 ' ALLEGRO_JOYSTICK_STATE.stick alias ALLEGRO_JOYSTICK_STATE.sticks
 ' ALLEGRO_JOYSTICK_STATE.button alias ALLEGRO_JOYSTICK_STATE.buttons
+' ALLEGRO_KEY_A alias <A>
+' ALLEGRO_KEY_B alias <B>
+' ALLEGRO_KEY_C alias <C>
+' ALLEGRO_KEY_D alias <D>
+' ALLEGRO_KEY_E alias <E>
+' ALLEGRO_KEY_F alias <F>
+' ALLEGRO_KEY_G alias <G>
+' ALLEGRO_KEY_H alias <H>
+' ALLEGRO_KEY_I alias <I>
+' ALLEGRO_KEY_J alias <J>
+' ALLEGRO_KEY_K alias <K>
+' ALLEGRO_KEY_L alias <L>
+' ALLEGRO_KEY_M alias <M>
+' ALLEGRO_KEY_N alias <N>
+' ALLEGRO_KEY_O alias <O>
+' ALLEGRO_KEY_P alias <P>
+' ALLEGRO_KEY_Q alias <Q>
+' ALLEGRO_KEY_R alias <R>
+' ALLEGRO_KEY_S alias <S>
+' ALLEGRO_KEY_T alias <T>
+' ALLEGRO_KEY_U alias <U>
+' ALLEGRO_KEY_V alias <V>
+' ALLEGRO_KEY_W alias <W>
+' ALLEGRO_KEY_X alias <X>
+' ALLEGRO_KEY_Y alias <Y>
+' ALLEGRO_KEY_Z alias <Z>
+' ALLEGRO_KEY_0 alias <0>
+' ALLEGRO_KEY_1 alias <1>
+' ALLEGRO_KEY_2 alias <2>
+' ALLEGRO_KEY_3 alias <3>
+' ALLEGRO_KEY_4 alias <4>
+' ALLEGRO_KEY_5 alias <5>
+' ALLEGRO_KEY_6 alias <6>
+' ALLEGRO_KEY_7 alias <7>
+' ALLEGRO_KEY_8 alias <8>
+' ALLEGRO_KEY_9 alias <9>
+' ALLEGRO_KEY_PAD_0 alias <0>
+' ALLEGRO_KEY_PAD_1 alias <1>
+' ALLEGRO_KEY_PAD_2 alias <2>
+' ALLEGRO_KEY_PAD_3 alias <3>
+' ALLEGRO_KEY_PAD_4 alias <4>
+' ALLEGRO_KEY_PAD_5 alias <5>
+' ALLEGRO_KEY_PAD_6 alias <6>
+' ALLEGRO_KEY_PAD_7 alias <7>
+' ALLEGRO_KEY_PAD_8 alias <8>
+' ALLEGRO_KEY_PAD_9 alias <9>
+' ALLEGRO_KEY_F1 alias <F1>
+' ALLEGRO_KEY_F2 alias <F2>
+' ALLEGRO_KEY_F3 alias <F3>
+' ALLEGRO_KEY_F4 alias <F4>
+' ALLEGRO_KEY_F5 alias <F5>
+' ALLEGRO_KEY_F6 alias <F6>
+' ALLEGRO_KEY_F7 alias <F7>
+' ALLEGRO_KEY_F8 alias <F8>
+' ALLEGRO_KEY_F9 alias <F9>
+' ALLEGRO_KEY_F10 alias <F10>
+' ALLEGRO_KEY_F11 alias <F11>
+' ALLEGRO_KEY_F12 alias <F12>
+' ALLEGRO_KEY_ESCAPE alias <ESCAPE>
+' ALLEGRO_KEY_TILDE alias <TILDE>
+' ALLEGRO_KEY_MINUS alias <MINUS>
+' ALLEGRO_KEY_EQUALS alias <EQUALS>
+' ALLEGRO_KEY_BACKSPACE alias <BACKSPACE>
+' ALLEGRO_KEY_TAB alias <TAB>
+' ALLEGRO_KEY_OPENBRACE alias <OPENBRACE>
+' ALLEGRO_KEY_CLOSEBRACE alias <CLOSEBRACE>
+' ALLEGRO_KEY_ENTER alias <ENTER>
+' ALLEGRO_KEY_SEMICOLON alias <SEMICOLON>
+' ALLEGRO_KEY_QUOTE alias <QUOTE>
+' ALLEGRO_KEY_BACKSLASH alias <BACKSLASH>
+' ALLEGRO_KEY_BACKSLASH2 alias <BACKSLASH2>
+' ALLEGRO_KEY_COMMA alias <COMMA>
+' ALLEGRO_KEY_FULLSTOP alias <FULLSTOP>
+' ALLEGRO_KEY_SLASH alias <SLASH>
+' ALLEGRO_KEY_SPACE alias <SPACE>
+' ALLEGRO_KEY_INSERT alias <INSERT>
+' ALLEGRO_KEY_DELETE alias <DELETE>
+' ALLEGRO_KEY_HOME alias <HOME>
+' ALLEGRO_KEY_END alias <END>
+' ALLEGRO_KEY_PGUP alias <PGUP>
+' ALLEGRO_KEY_PGDN alias <PGDN>
+' ALLEGRO_KEY_LEFT alias <LEFT>
+' ALLEGRO_KEY_RIGHT alias <RIGHT>
+' ALLEGRO_KEY_UP alias <UP>
+' ALLEGRO_KEY_DOWN alias <DOWN>
+' ALLEGRO_KEY_PAD_SLASH alias <SLASH>
+' ALLEGRO_KEY_PAD_ASTERISK alias <ASTERISK>
+' ALLEGRO_KEY_PAD_MINUS alias <MINUS>
+' ALLEGRO_KEY_PAD_PLUS alias <PLUS>
+' ALLEGRO_KEY_PAD_DELETE alias <DELETE>
+' ALLEGRO_KEY_PAD_ENTER alias <ENTER>
+' ALLEGRO_KEY_PRINTSCREEN alias <PRINTSCREEN>
+' ALLEGRO_KEY_PAUSE alias <PAUSE>
+' ALLEGRO_KEY_ABNT_C1 alias <C1>
+' ALLEGRO_KEY_YEN alias <YEN>
+' ALLEGRO_KEY_KANA alias <KANA>
+' ALLEGRO_KEY_CONVERT alias <CONVERT>
+' ALLEGRO_KEY_NOCONVERT alias <NOCONVERT>
+' ALLEGRO_KEY_AT alias <AT>
+' ALLEGRO_KEY_CIRCUMFLEX alias <CIRCUMFLEX>
+' ALLEGRO_KEY_COLON2 alias <COLON2>
+' ALLEGRO_KEY_KANJI alias <KANJI>
+' ALLEGRO_KEY_PAD_EQUALS alias <EQUALS>
+' ALLEGRO_KEY_BACKQUOTE alias <BACKQUOTE>
+' ALLEGRO_KEY_SEMICOLON2 alias <SEMICOLON2>
+' ALLEGRO_KEY_COMMAND alias <COMMAND>
+' ALLEGRO_KEY_BACK alias <BACK>
+' ALLEGRO_KEY_VOLUME_UP alias <UP>
+' ALLEGRO_KEY_VOLUME_DOWN alias <DOWN>
+' ALLEGRO_KEY_SEARCH alias <SEARCH>
+' ALLEGRO_KEY_DPAD_CENTER alias <CENTER>
+' ALLEGRO_KEY_BUTTON_X alias <X>
+' ALLEGRO_KEY_BUTTON_Y alias <Y>
+' ALLEGRO_KEY_DPAD_UP alias <UP>
+' ALLEGRO_KEY_DPAD_DOWN alias <DOWN>
+' ALLEGRO_KEY_DPAD_LEFT alias <LEFT>
+' ALLEGRO_KEY_DPAD_RIGHT alias <RIGHT>
+' ALLEGRO_KEY_SELECT alias <SELECT>
+' ALLEGRO_KEY_START alias <START>
+' ALLEGRO_KEY_BUTTON_L1 alias <L1>
+' ALLEGRO_KEY_BUTTON_R1 alias <R1>
+' ALLEGRO_KEY_BUTTON_L2 alias <L2>
+' ALLEGRO_KEY_BUTTON_R2 alias <R2>
+' ALLEGRO_KEY_BUTTON_A alias <A>
+' ALLEGRO_KEY_BUTTON_B alias <B>
+' ALLEGRO_KEY_THUMBL alias <THUMBL>
+' ALLEGRO_KEY_THUMBR alias <THUMBR>
+' ALLEGRO_KEY_UNKNOWN alias <UNKNOWN>
+' ALLEGRO_KEY_MODIFIERS alias <MODIFIERS>
+' ALLEGRO_KEY_LSHIFT alias <LSHIFT>
+' ALLEGRO_KEY_RSHIFT alias <RSHIFT>
+' ALLEGRO_KEY_LCTRL alias <LCTRL>
+' ALLEGRO_KEY_RCTRL alias <RCTRL>
+' ALLEGRO_KEY_ALT alias <ALT>
+' ALLEGRO_KEY_ALTGR alias <ALTGR>
+' ALLEGRO_KEY_LWIN alias <LWIN>
+' ALLEGRO_KEY_RWIN alias <RWIN>
+' ALLEGRO_KEY_MENU alias <MENU>
+' ALLEGRO_KEY_SCROLLLOCK alias <SCROLLLOCK>
+' ALLEGRO_KEY_NUMLOCK alias <NUMLOCK>
+' ALLEGRO_KEY_CAPSLOCK alias <CAPSLOCK>
+' ALLEGRO_KEY_MAX alias <MAX>

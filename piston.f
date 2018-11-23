@@ -46,10 +46,10 @@ z" AKFS" @ constant FULLSCREEN_EVENT
 
 define internal
     transform m1
-    variable clipx
-    variable clipy
-    variable clipw
-    variable cliph
+    fvariable clipx
+    fvariable clipy
+    fvariable clipw
+    fvariable cliph
 
 
 using internal
@@ -67,11 +67,11 @@ using internal
 
 : mount  ( - )
     m1 al_identity_transform
-    m1 #globalscale s>f 1sf dup al_scale_transform
+    m1 #globalscale s>f fdup al_scale_transform
     fs @ if
         m1
-            native x@ 2 / res x@ #globalscale * 2 / -  s>f 1sf 
-            native y@ 2 / res y@ #globalscale * 2 / -  s>f 1sf  al_translate_transform
+            native x@ 2 / res x@ #globalscale * 2 / -  s>f
+            native y@ 2 / res y@ #globalscale * 2 / -  s>f  al_translate_transform
     then
     \ m1 0.625e 0.625e 2sf al_translate_transform
     m1 al_use_transform
@@ -94,7 +94,8 @@ using internal
 ;
 
 variable (catch)
-: try  dup -exit  sp@ cell+ >r  code> catch (catch) !  r> sp!  (catch) @ ;
+: call-code >r ; \ as opposed to call-xt, which is just EXECUTE
+: try  dup -exit  sp@ cell+ >r  ['] call-code catch (catch) !  r> sp!  (catch) @ ;
 
 : suspend
     -audio
@@ -175,7 +176,7 @@ variable newfs
 : ?hidemouse  display oscursor @ if al_show_mouse_cursor else al_hide_mouse_cursor then ; 
 
 : onto  ( bmp - )  dup display = if al_get_backbuffer then al_set_target_bitmap ;
-: ?greybg  fs @ -exit  display onto  unmount  0.1e 0.1e 0.1e 1e 4sf al_clear_to_color ;
+: ?greybg  fs @ -exit  display onto  unmount  0.1e 0.1e 0.1e 1e al_clear_to_color ;
 : (show)  me >r  'show try to showerr  r> to me ;
 : show  ?greybg  mount  display onto  (show)  unmount  display onto  ?overlay  ;
 : present  al_flip_display ;
@@ -202,9 +203,9 @@ define internal
     variable x  variable vx  1 vx !
     variable y  variable vy  1 vy !
     :noname
-        show>
-        0e 0e 0.5e 1e 4sf al_clear_to_color
-        x @ y @ over 50 + over 50 + 4s>f 4sf 1e 1e 1e 1e 4sf al_draw_filled_rectangle
+	show>
+        0e 0e 0.5e 1e al_clear_to_color
+        x @ y @ over 50 + over 50 + 4s>f 1e 1e 1e 1e al_draw_filled_rectangle
         vx @ x +!  vy @ y +!
         vx @ 0< if  x @ 0 < if  vx @ negate vx !  then then
         vy @ 0< if  y @ 0 < if  vy @ negate vy !  then then
